@@ -1,0 +1,36 @@
+{% include "Navigation.html" %}
+{% load extrafunction %}
+
+{%if my_project_lists|Count_project%}
+<h2>No Project Listed</h2>
+{%endif%}
+{%for project_list in my_project_lists%}
+<div class="my-4">
+    <div class=" d-flex justify-content-center">
+        <div class="card text-center w-75">
+            <div class="card-header">
+                {{project_list.title}}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{project_list.description}}</p>
+            </div>
+            <div class="card-footer text-body-secondary">
+                <p>{{project_list.email}}</p>
+                <span>{{project_list.datetime}}</span>
+            </div>
+        </div>
+    </div>
+    {% if project_list.checkpoint %}
+    <form action="/project_list_me" method="POST">
+         {% csrf_token %}
+    <div class = "w-75 my-1 mx-auto d-flex justify-content-end">
+         <input hidden type="text" value='{{project_list.id}}' name="close_project">
+         <input type="submit" class="btn btn-primary" name="Close Project" value="Close Project" onclick="return confirm('Are you sure you want to close the Project?')">
+    </div>
+    </form>
+    {%else%}
+    <div class = "w-75 my-1 mx-auto d-flex justify-content-end text-danger">Closed</div>
+    {%endif%}
+</div>
+{% endfor%}
+

@@ -1,0 +1,110 @@
+{% include "Navigation.html" %}
+
+
+<!--<form action="/add" method="POST" id="form" enctype="multipart/form-data" class="shadow rounded h-75">-->
+<!--    {% csrf_token %}-->
+<!--        <div class="my-2">-->
+<!--            {{form.as_p}}-->
+<!--             <input type="submit" name="Add" value="Upload">-->
+<!--        </div>-->
+<!--</form>-->
+
+
+<section class="vh-100" id="addpostbackground">
+    <div class="container h-75">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-9">
+                 <h1 class="text-white mb-4">Add Post</h1>
+                <div class="card" style="border-radius: 15px;">
+                    <form action="/add" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-3 ps-5">
+                                <h6 class="mb-0">Title</h6>
+                            </div>
+                            <div class="col-md-9 pe-5">
+<!--                                <input type="text" class="form-control form-control-lg" name="title" required/>-->
+                                {{form.name}}
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0">Category</h6>
+
+                            </div>
+                            <div class="col-md-9 pe-5">
+<!--                                <select class="custom-select form-control form-control-lg" name="category" required>-->
+<!--                                    {% for category in categories%}-->
+<!--                                    <option value="{{category.id}}">{{category.name}}</option>-->
+<!--                                    {%endfor%}-->
+<!--                                </select>-->
+                                {{form.category}}
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0">Description</h6>
+
+                            </div>
+                            <div class="col-md-9 pe-5">
+
+<!--                                <textarea class="form-control" rows="3"-->
+<!--                                          placeholder="Description about the image" name="description"></textarea>-->
+                                {{form.description}}
+
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0">Upload Image</h6>
+
+                            </div>
+                            <div class="col-md-9 pe-5">
+
+<!--                                <input class="form-control form-control-lg"  type="file" name="image" required/>-->
+                                {{form.image}}
+                                <div class="small text-muted mt-2">Upload your image minimum 1080 pixel
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0">Price</h6>
+
+                            </div>
+                            <div class="col-md-9 pe-5">
+
+<!--                                <input class="form-control form-control-lg"  type="number" name="price" required/>-->
+                                {{form.prices}}
+                            </div>
+                        </div>
+                        <hr class="mx-n3">
+
+                        <div class="px-5 py-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Upload</button>
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    #addpostbackground
+    {font-family:sans-serif;
+  background: -webkit-linear-gradient(to right, #155799, #159957);
+  background: linear-gradient(to right, #155799, #159957);
+  color:whitesmoke;}
+</style>

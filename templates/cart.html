@@ -1,0 +1,51 @@
+{% include "Navigation.html" %}
+{% load extrafunction %}
+<h1 class="mx-5">Cart</h1>
+<div class="row  mx-4">
+{% for product in products %}
+    <div class="card mb-3 mx-4" style="width: 19rem;" id="card-shadow">
+  <a href="/product_page?{{product.id}}"> <img src="{{product.image.url}}" class="card-img-top" alt="..." style="height:20rem"></a>
+  <div class="card-body">
+      <span>
+          <h5 class="card-title"><b>Title:</b>{{product.name}}</h5>
+      </span>
+      <span>
+          <p class="card-text overflow-y-auto" style="height:50px"><b>Description:</b>{{product.description}}</p>
+      </span>
+      <span>
+          <p class="card-text"><b>Price:</b> ₹{{product.prices}}</p>
+      </span>
+      <form action="" method="POST" class="mt-2">
+          {% csrf_token %}
+      <input hidden type="text" value='{{product.id}}' name="product_id">
+      <input type="submit" class="btn btn-primary" name="unsave" value="Remove">
+      </form>
+  </div>
+    </div>
+{% endfor %}
+</div>
+<hr>
+<div class="d-flex justify-content-between mx-4">
+<h3>Total Prices: ₹ {{products|total_prices}}</h3>
+<!--model-->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Check Out
+</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Checkout Form</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-3">
+        {% include "checkoutform.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+{%include "footer.html"%}
